@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import IntroScreen from './IntroScreen';
+import RoleSelect from './RoleSelect';
+import Game from './Game';
+
+import { story as storyYoungling } from './data/storyTree_youngling';
+import { story as storyPadawan } from './data/storyTree_padawan';
+import { story as storyKnight } from './data/storyTree_knight';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [screen, setScreen] = useState("intro");
+  const [role, setRole] = useState(null);
+
+  const handleRoleSelect = (selectedRole) => {
+    setRole(selectedRole);
+    setScreen("game");
+  };
+
+  const getStoryForRole = (role) => {
+    if (role === "youngling") return storyYoungling;
+    if (role === "padawan") return storyPadawan;
+    if (role === "knight") return storyKnight;
+    return null;
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="min-h-screen text-white font-sans">
+      {screen === "intro" && <IntroScreen onStart={() => setScreen("role")} />}
+      {screen === "role" && <RoleSelect onSelect={handleRoleSelect} />}
+      {screen === "game" && (
+        <Game
+          story={getStoryForRole(role)}
+          onReturnToRoleSelect={() => {
+            setScreen("role");
+            setRole(null);
+          }}
+        />
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
