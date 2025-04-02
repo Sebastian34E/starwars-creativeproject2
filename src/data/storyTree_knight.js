@@ -28,7 +28,7 @@ export const story = {
         "next": "K4"
       },
       {
-        "text": "Surrender to Lord Vader.",
+        "text": "Surrender to Anakin.",
         "next": "K2_INQUISITOR"
       }
     ]
@@ -36,7 +36,7 @@ export const story = {
   "K2_DEATH": {
     "ending": true,
     "type": "death",
-    "text": "You fall in single combat against Darth Vader, sacrificing yourself in a valiant effort."
+    "text": "You fall in single combat against Anakin, sacrificing yourself in a valiant effort."
   },
   "K2_INQUISITOR": {
     "ending": true,

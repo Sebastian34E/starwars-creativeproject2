@@ -41,7 +41,7 @@ export const story = {
   "P2_INQUISITOR": {
     "ending": true,
     "type": "inquisitor",
-    "text": "Captured by Vader, your rage is twisted into power. You become an Inquisitor."
+    "text": "Captured by Anakin, your rage is twisted into power. You become an Inquisitor."
   },
   "P3": {
     "prompt": "Determined to carry out your Master\u2019s last order, you navigate the Temple\u2019s corridors alone...",
